@@ -312,6 +312,12 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions...
 ```
+
+## 👥 Contributors
+Thanks to these awesome people for helping make VulnDraft better!
+
+[![Contributor](https://contrib.rocks/image?repo=ruyynn/VulnDraft)](https://github.com/ruyynn/VulnDraft/graphs/contributors)
+
 ## ⭐ Star History
 
 Keep track of VulnDraft’s popularity over time:
