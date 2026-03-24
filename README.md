@@ -318,6 +318,8 @@ Thanks to these awesome people for helping make VulnDraft better!
 
 [![Contributor](https://contrib.rocks/image?repo=ruyynn/VulnDraft)](https://github.com/ruyynn/VulnDraft/graphs/contributors)
 
+thanks to [zeennxx](https://github.com/zeennxx) for contributions!
+
 ## ⭐ Star History
 
 Keep track of VulnDraft’s popularity over time:
