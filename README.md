@@ -4,7 +4,7 @@
   
   # 🐞 VulnDraft
   
-  ### Professional Bug Report Generator for Security Researchers
+  ### Bug Report Generator for Security Researchers
   
   [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square)](https://github.com/ruyynn/VulnDraft/releases)
   [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
