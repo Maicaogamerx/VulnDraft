@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Preview - {{ report_title }}</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            padding: 40px 20px;
+        }
+        
+        .report-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .report-header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 40px;
+        }
+        
+        .report-content {
+            padding: 40px;
+        }
+        
+        .vulnerability-card {
+            background: #f8fafc;
+            border-left: 4px solid #4f46e5;
+            padding: 24px;
+            margin: 24px 0;
+            border-radius: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .vulnerability-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .severity-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .severity-critical { background: #fee2e2; color: #dc2626; }
+        .severity-high { background: #ffedd5; color: #f97316; }
+        .severity-medium { background: #fef9c3; color: #eab308; }
+        .severity-low { background: #ede9fe; color: #8b5cf6; }
+        .severity-info { background: #f1f5f9; color: #475569; }
+        
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .step-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .step-list li::before {
+            content: counter(step);
+            counter-increment: step;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #4f46e5;
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .step-list {
+            counter-reset: step;
+        }
+        
+        pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #dc2626;
+        }
+        
+        .cvss-score {
+            display: inline-flex;
+            align-items: baseline;
+            background: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 12px;
+        }
+        
+        .cvss-score .score {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4f46e5;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .stat-item {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .report-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .vulnerability-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .report-header, .report-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- Header -->
+        <div class="report-header">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <div class="flex items-center space-x-2 mb-3">
+                        <span class="text-3xl">🐞</span>
+                        <span class="text-xs uppercase tracking-wider text-indigo-300 bg-white/10 px-3 py-1 rounded-full">Confidential Report</span>
+                    </div>
+                    <h1 class="text-3xl font-bold mb-2">{{ report_title }}</h1>
+                    <div class="text-sm text-gray-300 space-y-1">
+                        <p><i class="fas fa-id-card mr-2"></i>Report ID: {{ report_id }}</p>
+                        <p><i class="fas fa-calendar-alt mr-2"></i>Date: {{ date }}</p>
+                        <p><i class="fas fa-user mr-2"></i>Author: {{ author }}</p>
+                        {% if target %}
+                        <p><i class="fas fa-globe mr-2"></i>Target: {{ target }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="bg-white/10 rounded-xl px-4 py-2 text-center">
+                        <i class="fas fa-shield-alt text-2xl mb-1 block"></i>
+                        <span class="text-xs">Security Assessment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="report-content">
+            <!-- Executive Summary -->
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center">
+                    <i class="fas fa-chart-line text-indigo-600 mr-2"></i>
+                    Executive Summary
+                </h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">{{ summary.total_bugs }}</div>
+                        <div class="stat-label">Total Vulnerabilities</div>
+                    </div>
+                    {% if summary.avg_cvss > 0 %}
+                    <div class="stat-item">
+                        <div class="stat-value">{{ summary.avg_cvss }}</div>
+                        <div class="stat-label">Average CVSS Score</div>
+                    </div>
+                    {% endif %}
+                    <div class="stat-item">
+                        <div class="stat-value capitalize">{{ summary.highest_severity }}</div>
+                        <div class="stat-label">Highest Severity</div>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                    This report documents security findings discovered during the security assessment.
+                    A total of <strong>{{ summary.total_bugs }}</strong> vulnerability(ies) were identified,
+                    with a maximum severity of <strong class="capitalize">{{ summary.highest_severity }}</strong>.
+                    {% if summary.has_cvss %}All findings include CVSS v3.1 scoring for risk prioritization.{% endif %}
+                </p>
+            </div>
+            
+            <!-- Vulnerabilities -->
+            <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <i class="fas fa-bug text-indigo-600 mr-2"></i>
+                Vulnerability Details
+            </h2>
+            
+            {% for vuln in vulnerabilities %}
+            <div class="vulnerability-card">
+                <div class="flex items-start justify-between flex-wrap gap-3 mb-4">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                            <h3 class="text-lg font-bold text-gray-900">
+                                {{ vuln.id }}. {{ vuln.title }}
+                            </h3>
+                            {% if vuln.severity %}
+                            <span class="severity-badge severity-{{ vuln.severity }}">
+                                <i class="fas fa-exclamation-triangle mr-1 text-xs"></i>
+                                {{ vuln.severity | upper }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        {% if vuln.cvss_score %}
+                        <div class="cvss-score">
+                            <span class="text-sm text-gray-500 mr-2">CVSS v3.1:</span>
+                            <span class="score">{{ vuln.cvss_score }}</span>
+                            {% if vuln.cvss_vector %}
+                            <span class="text-xs text-gray-400 ml-2 font-mono">({{ vuln.cvss_vector }})</span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <div class="mb-4">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">
+                        <i class="fas fa-align-left mr-1 text-indigo-500"></i>Description
+                    </h4>
+                    <p class="text-gray-600 leading-relaxed">{{ vuln.description }}</p>
+                </div>
+                
+                <!-- Steps to Reproduce -->
+                <div class="mb-4">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">
+                        <i class="fas fa-list-ol mr-1 text-indigo-500"></i>Steps to Reproduce
+                    </h4>
+                    <ul class="step-list text-gray-600">
+                        {% for step in vuln.steps_to_reproduce %}
+                        <li>{{ step }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <!-- Impact -->
+                {% if vuln.impact %}
+                <div class="mb-4">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">
+                        <i class="fas fa-bullhorn mr-1 text-indigo-500"></i>Impact
+                    </h4>
+                    <p class="text-gray-600">{{ vuln.impact }}</p>
+                </div>
+                {% endif %}
+                
+                <!-- Proof of Concept -->
+                {% if vuln.poc %}
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">
+                        <i class="fas fa-code mr-1 text-indigo-500"></i>Proof of Concept
+                    </h4>
+                    <pre><code>{{ vuln.poc }}</code></pre>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <!-- Recommendations -->
+            <div class="mt-8 p-5 bg-indigo-50 rounded-xl border border-indigo-100">
+                <h3 class="font-bold text-indigo-800 mb-2 flex items-center">
+                    <i class="fas fa-lightbulb mr-2"></i>Recommendations
+                </h3>
+                <p class="text-indigo-700 text-sm">
+                    Please review each vulnerability for specific remediation guidance. 
+                    For critical and high-severity findings, immediate action is recommended.
+                    All testing was conducted within scope and no data was exfiltrated.
+                </p>
+            </div>
+            
+            <!-- Footer -->
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center text-gray-400 text-xs">
+                <p>Generated by VulnDraft v1.0</p>
+                <p class="mt-1">This report is confidential and intended for security purposes only</p>
+                <div class="flex justify-center space-x-4 mt-3">
+                    <i class="fab fa-github"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add print functionality
+        if (window.matchMedia) {
+            const printMedia = window.matchMedia('print');
+            printMedia.addListener((e) => {
+                if (e.matches) {
+                    console.log('Printing report...');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

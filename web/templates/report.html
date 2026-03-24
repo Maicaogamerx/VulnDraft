@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Generated | Bug Report Generator </title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .gradient-bg { background: linear-gradient(-45deg, #667eea, #764ba2, #6b46c1, #805ad5); background-size: 400% 400%; animation: gradient 15s ease infinite; }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .animate-slide-up { animation: slideUp 0.5s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .confetti { position: fixed; pointer-events: none; z-index: 100; }
+        
+        .copy-btn { transition: all 0.2s ease; }
+        .copy-btn:hover { background: #4f46e5; transform: scale(1.05); }
+        
+        .severity-critical { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .severity-high { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .severity-medium { background: linear-gradient(135deg, #eab308, #ca8a04); }
+        .severity-low { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .severity-info { background: linear-gradient(135deg, #6b7280, #4b5563); }
+        
+        .stat-card { transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15); }
+        
+        .preview-iframe { transition: all 0.3s ease; }
+        .preview-iframe:hover { box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.25); }
+        
+        .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; animation: slideUp 0.3s ease-out; }
+    </style>
+</head>
+<body class="gradient-bg font-sans antialiased min-h-screen">
+    
+    <!-- Navigation -->
+    <nav class="glass sticky top-0 z-50 border-b border-gray-200/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="text-2xl">🐞</div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Bug Report Generator</h1>
+                    </div>
+                </div>
+                <a href="/" class="text-dark-600 hover:text-primary-600 transition text-sm font-medium">
+                    <i class="fas fa-plus-circle mr-1"></i>New Report
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-16">
+        <!-- Success Header -->
+        <div class="text-center mb-8 animate-slide-up">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
+                <i class="fas fa-check-circle text-green-600 text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-dark-900 mb-2">Report Generated Successfully!</h1>
+            <p class="text-dark-600">Your professional security report is ready for review and download</p>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 animate-slide-up" style="animation-delay: 0.1s">
+            <div class="bg-white rounded-xl shadow-lg p-5 stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-dark-500 text-sm">Report ID</p>
+                        <p class="text-dark-900 font-bold text-lg font-mono" id="reportId">{{ report.report_id }}</p>
+                    </div>
+                    <button onclick="copyReportId()" class="copy-btn bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white p-2 rounded-lg transition">
+                        <i class="fas fa-copy text-sm"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-5 stat-card">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bug text-primary-600"></i>
+                    </div>
+                    <div>
+                        <p class="text-dark-500 text-sm">Total Vulnerabilities</p>
+                        <p class="text-dark-900 font-bold text-2xl">{{ summary.total_bugs }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            {% if summary.avg_cvss > 0 %}
+            <div class="bg-white rounded-xl shadow-lg p-5 stat-card">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="text-dark-500 text-sm">Avg CVSS Score</p>
+                        <p class="text-dark-900 font-bold text-2xl">{{ summary.avg_cvss }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="bg-white rounded-xl shadow-lg p-5 stat-card">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 {% if summary.highest_severity == 'critical' %}bg-red-100{% elif summary.highest_severity == 'high' %}bg-orange-100{% elif summary.highest_severity == 'medium' %}bg-yellow-100{% else %}bg-gray-100{% endif %} rounded-lg flex items-center justify-center">
+                        <i class="fas fa-exclamation-triangle {% if summary.highest_severity == 'critical' %}text-red-600{% elif summary.highest_severity == 'high' %}text-orange-600{% elif summary.highest_severity == 'medium' %}text-yellow-600{% else %}text-gray-600{% endif %}"></i>
+                    </div>
+                    <div>
+                        <p class="text-dark-500 text-sm">Highest Severity</p>
+                        <p class="font-bold text-xl capitalize {% if summary.highest_severity == 'critical' %}text-red-600{% elif summary.highest_severity == 'high' %}text-orange-600{% elif summary.highest_severity == 'medium' %}text-yellow-600{% else %}text-gray-600{% endif %}">
+                            {{ summary.highest_severity }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Download Options -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8 animate-slide-up" style="animation-delay: 0.15s">
+            <div class="bg-gradient-to-r from-dark-800 to-dark-900 px-6 py-4">
+                <h2 class="text-white font-semibold flex items-center">
+                    <i class="fas fa-download mr-2"></i>Download Report
+                </h2>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <a href="/download/{{ report.report_id }}/md" class="group flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-primary-50 transition-all duration-200 border border-gray-200 hover:border-primary-300">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gray-200 group-hover:bg-primary-100 rounded-lg flex items-center justify-center transition">
+                                <i class="fas fa-file-alt text-gray-600 group-hover:text-primary-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-dark-800">Markdown</p>
+                                <p class="text-xs text-dark-400">.md · 12KB</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-download text-dark-400 group-hover:text-primary-600 transition"></i>
+                    </a>
+                    
+                    <a href="/download/{{ report.report_id }}/html" class="group flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-primary-50 transition-all duration-200 border border-gray-200 hover:border-primary-300">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gray-200 group-hover:bg-primary-100 rounded-lg flex items-center justify-center transition">
+                                <i class="fab fa-html5 text-gray-600 group-hover:text-orange-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-dark-800">HTML</p>
+                                <p class="text-xs text-dark-400">.html · 45KB</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-download text-dark-400 group-hover:text-primary-600 transition"></i>
+                    </a>
+                    
+                    <a href="/download/{{ report.report_id }}/json" class="group flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-primary-50 transition-all duration-200 border border-gray-200 hover:border-primary-300">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gray-200 group-hover:bg-primary-100 rounded-lg flex items-center justify-center transition">
+                                <i class="fas fa-code text-gray-600 group-hover:text-green-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-dark-800">JSON</p>
+                                <p class="text-xs text-dark-400">.json · 28KB</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-download text-dark-400 group-hover:text-primary-600 transition"></i>
+                    </a>
+                </div>
+                
+                <div class="mt-4 p-3 bg-primary-50 rounded-lg border border-primary-100">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-primary-700"><i class="fas fa-share-alt mr-1"></i>Share this report:</span>
+                        <div class="flex space-x-2">
+                            <button onclick="shareReport()" class="px-3 py-1 bg-white rounded-lg text-primary-600 hover:bg-primary-600 hover:text-white transition text-xs">Copy Link</button>
+                            <button onclick="exportPDF()" class="px-3 py-1 bg-white rounded-lg text-primary-600 hover:bg-primary-600 hover:text-white transition text-xs disabled:opacity-50" id="pdfBtn">
+                                <i class="fas fa-file-pdf mr-1"></i>PDF (Coming Soon)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Report Preview -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-slide-up" style="animation-delay: 0.2s">
+            <div class="bg-gradient-to-r from-dark-800 to-dark-900 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-white font-semibold flex items-center">
+                    <i class="fas fa-eye mr-2"></i>Report Preview
+                </h2>
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs text-dark-400">Preview Mode</span>
+                    <i class="fas fa-desktop text-dark-400 text-sm"></i>
+                </div>
+            </div>
+            <div class="p-0">
+                <iframe id="previewFrame" src="/preview/{{ report.report_id }}" 
+                        class="w-full h-[600px] border-0 preview-iframe"
+                        onload="hideLoader()"></iframe>
+                <div id="previewLoader" class="flex items-center justify-center py-20">
+                    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+                    <span class="ml-3 text-dark-500">Loading preview...</span>
+                </div>
+                <style>
+                    .loader {
+                        border-top-color: #4f46e5;
+                        animation: spinner 0.8s linear infinite;
+                    }
+                    @keyframes spinner {
+                        to { transform: rotate(360deg); }
+                    }
+                </style>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8 animate-slide-up" style="animation-delay: 0.25s">
+            <a href="/" class="inline-flex items-center justify-center px-6 py-3 bg-white text-dark-700 rounded-xl hover:shadow-lg transition-all border border-gray-200">
+                <i class="fas fa-plus-circle mr-2"></i>Create New Report
+            </a>
+            <a href="/download/{{ report.report_id }}/html" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                <i class="fas fa-download mr-2"></i>Download Full Report
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        function hideLoader() {
+            const loader = document.getElementById('previewLoader');
+            if (loader) loader.style.display = 'none';
+        }
+        
+        function copyReportId() {
+            const reportId = document.getElementById('reportId').innerText;
+            navigator.clipboard.writeText(reportId).then(() => {
+                showToast('Report ID copied to clipboard!', 'success');
+            });
+        }
+        
+        function shareReport() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('Report link copied to clipboard!', 'success');
+            });
+        }
+        
+        function exportPDF() {
+            showToast('PDF export coming in next update!', 'info');
+        }
+        
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            toast.className = `toast bg-${type === 'success' ? 'green' : 'blue'}-500 text-white px-6 py-3 rounded-xl shadow-lg flex items-center space-x-2`;
+            toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i><span>${message}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        // Track downloads
+        document.querySelectorAll('a[href*="/download/"]').forEach(link => {
+            link.addEventListener('click', function() {
+                const format = this.href.split('/').pop();
+                console.log(`Downloading report in ${format} format`);
+            });
+        });
+    </script>
+</body>
+</html>
